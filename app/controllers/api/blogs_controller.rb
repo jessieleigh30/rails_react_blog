@@ -1,5 +1,5 @@
 class Api::BlogsController < ApplicationController
-  before_action :set_blog, only [:show, :update, :destroy]
+  before_action :set_blog, only: [:show, :update, :destroy]
   
   def index
     render json: Blog.all
@@ -23,6 +23,7 @@ class Api::BlogsController < ApplicationController
       render json: @blog
     else
       render json: errors
+    end
   end
 
   def destroy
@@ -33,6 +34,7 @@ class Api::BlogsController < ApplicationController
 
   def set_blog
     @blog = Blog.find(params{:id})
+  end
 
   def blog_params
     params.require(:blog).permit(:title, :body)
